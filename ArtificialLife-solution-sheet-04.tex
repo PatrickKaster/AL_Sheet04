@@ -46,17 +46,30 @@
 \begin{problem}[Assignment 24]
 \end{problem}
 \begin{solution}
+    A loop with the double length of the edges needs twice more \emph{msg.forward} blocks
+    %\begin{figure}[h]
+    %\centering
+        %$\includegraphics[width=1.0\textwidth]{LangtonsSelfReplicationLoopDouble.png}
+    %\caption{Loop with the double length of the edges}
+    %\end{figure}  
 \end{solution}
 
 \begin{problem}[Assignment 25]
 \end{problem}
 \begin{solution}
+The reproduction of the \emph{Chou-Reggia}-loop is basically identical to \emph{Langton's loop}, except that in \emph{Chou-Reggia}-loop all sheaths are removed. Instead of the extending arm, a \emph{growth cap} is developed at the tip of the first \emph{msg.forward} blocks. This \emph{growth cap} provides a sense of orientation, replacing the function of the sheaths.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/choureggia}
+	\caption{first three steps in replication of a \emph{Chou-Reggia}-loop. From \cite{ChouReggia}. }
+\end{figure}
 \end{solution}
 
-\begin{problem}[Assignment 26]
-\end{problem}
-\begin{solution}
-\end{solution}
+%\begin{problem}[Assignment 26]
+%\end{problem}
+%\begin{solution}
+%\end{solution}
 
 \begin{problem}[Assignment 27]
 \end{problem}
@@ -89,14 +102,62 @@ Proof of the recursion by induction:
 	\end{tabular}
 \end{solution}
 
+\newpage
+
 \begin{problem}[Assignment 29]
 \end{problem}
 \begin{solution}
+	\begin{enumerate}[a)]
+		\item 
+			The $B \rightarrow B C$ rule adds one unit length per turn, thus controls the length of the segments. The $A \rightarrow A +B C +B C$ concatenates the turns of the spiral
+			%\begin{table}[h!]
+				\begin{tabular}{ll}
+					 variables: & A, B, C\\ 
+					 constants: & +,- \\
+					 axiom: & -A \\
+							& \\
+					 rule 1: & $A \rightarrow A +B C +B C$ \\
+					 rule 2: & $B \rightarrow B C$ \\
+				\end{tabular}
+			%\end{table}
+
+		\item 
+			%\begin{table}[h!]
+				\begin{tabular}{ll}
+					 variables: & B, C, D, E, F\\ 
+					 constants: & +,- \\
+					 axiom: & B \\
+						    & \\
+					 rule 1: & $B \rightarrow C [-B] E [+B]$ \\
+					 rule 2: & $C \rightarrow F[-D]F$ \\
+					 rule 3: & $F \rightarrow FF$
+				\end{tabular}
+			%\end{table}
+	\end{enumerate}
+	\begin{figure}[h]
+		\centering
+		\begin{subfloatenv}{spiral for $\alpha=12^\circ$, $100$ iterations}{fig:spiral}
+			\includegraphics[width=0.3\textwidth]{img/spiral}
+		\end{subfloatenv}
+		\begin{subfloatenv}{tree, for $\alpha=30^\circ$, $5$ iterations}{fig:tree}
+			\includegraphics[width=0.3\textwidth]{img/tree}
+		\end{subfloatenv}
+		%\caption{proof by induction over points on a circle}
+			% das label muss immer nach der caption kommen, sonst gibt es Probleme bei der Referenzierung und Nummerierung.
+		\label{fig:plots}
+	\end{figure}
 \end{solution}
 
-\begin{problem}[Assignment 30]
-\end{problem}
-\begin{solution}
-\end{solution}
+\pagebreak
+
+%\begin{problem}[Assignment 30]
+%\end{problem}
+%\begin{solution}
+%\end{solution}
+
+\begin{thebibliography}{[01]}
+\bibitem[01]{ChouReggia} Reggia, James A and Chou, Hui-Hsien and Lohn, Jason D: "Cellular automata models of self-replicating systems" published in "Advances in Computers", volume 47, pp. 141--183, \emph{Elsevier}, 1998
+
+\end{thebibliography}
 
 \end{document}
