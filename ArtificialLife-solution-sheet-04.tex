@@ -61,6 +61,19 @@
 \begin{problem}[Assignment 27]
 \end{problem}
 \begin{solution}
+Let "$\vert$" be the concatenation of words. Then we have the following recursion for the L-system from the example:\\
+\begin{align*}
+	w_0 & = C, w_1 = A\\
+	w_n & = w_{n-2} \vert w_{n-1} \\
+	\vert w_n \vert & = \vert w_{n-2} \vert + \vert w_{n-1} \vert
+\end{align*}
+which is the recursion formula of the Fibonacci numbers ($\vert w_0 \vert = \vert w_1 \vert = 1$).
+
+Proof of the recursion by induction:
+	\begin{description}
+		\item[Induction start: $n=2$;] $w_2 = w_0 \vert w_1 = C \vert A = CA$
+		\item[Induction step: $n \rightarrow n+1$;] Using the induction hypothesis we conclude: $w_{n+1} = w_{(n+1)-2} \vert w_{(n+1)-1} = w_{n-1} \vert w_n$
+	\end{description}
 \end{solution}
 
 \begin{problem}[Assignment 28]
