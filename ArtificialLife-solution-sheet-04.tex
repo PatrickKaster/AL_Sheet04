@@ -47,11 +47,8 @@
 \end{problem}
 \begin{solution}
     A loop with the double length of the edges needs twice more \emph{msg.forward} blocks
-    %\begin{figure}[h]
-    %\centering
-        %$\includegraphics[width=1.0\textwidth]{LangtonsSelfReplicationLoopDouble.png}
-    %\caption{Loop with the double length of the edges}
-    %\end{figure}  
+    Each "70" string/message builds one cell. Each "40" string makes a corner/builds a daughter.
+    $\Rightarrow$ to double length of the edges, you just need to double the edges you just need to double the number of "70" messages, i.e. each 12 and take the same number of "40" strings.  
 \end{solution}
 
 \begin{problem}[Assignment 25]
@@ -59,35 +56,116 @@
 \begin{solution}
 The reproduction of the \emph{Chou-Reggia}-loop is basically identical to \emph{Langton's loop}, except that in \emph{Chou-Reggia}-loop all sheaths are removed. Instead of the extending arm, a \emph{growth cap} is developed at the tip of the first \emph{msg.forward} blocks. This \emph{growth cap} provides a sense of orientation, replacing the function of the sheaths.
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.8\textwidth]{img/choureggia}
-	\caption{first three steps in replication of a \emph{Chou-Reggia}-loop. From \cite{ChouReggia}. }
-\end{figure}
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{img/choureggia}
+%	\caption{first three steps in replication of a \emph{Chou-Reggia}-loop. From \cite{ChouReggia}. }
+%\end{figure}
+$t=0:$
+\begin{tabular}{|c|c|c|}
+\cline{1-2} 
+1 & 1 & \multicolumn{1}{c}{}\tabularnewline
+\hline 
+3 & 4 & 1\tabularnewline
+\hline 
+\end{tabular}%
+$\qquad t=1:$
+\begin{tabular}{|c|c|c|}
+\cline{1-2} 
+1 & 4 & \multicolumn{1}{c}{}\tabularnewline
+\hline 
+1 & 3 & 5\tabularnewline
+\hline 
+\end{tabular}%
+$\qquad t=2:$
+\begin{tabular}{|c|c|c|c}
+\cline{1-3} 
+4 & 3 & 7 & \tabularnewline
+\hline 
+1 & 1 & 3 & \multicolumn{1}{c|}{7}\tabularnewline
+\hline 
+\multicolumn{1}{c}{} &  & 7 & \tabularnewline
+\cline{3-3} 
+\end{tabular}%\\
+
+$t=3:$
+\begin{tabular}{|c|c|c|c|}
+\hline 
+3 & 1 & 7 & 7\tabularnewline
+\hline 
+4 & 1 & 1 & 2\tabularnewline
+\hline 
+\multicolumn{1}{c}{} &  & 7 & 7\tabularnewline
+\cline{3-4} 
+\end{tabular}%
+$\qquad t=4:$
+\begin{tabular}{|c|c|c|c|}
+\cline{1-2} 
+1 & 1 & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}\tabularnewline
+\hline 
+3 & 4 & 1 & 1\tabularnewline
+\hline 
+\end{tabular}
+
 \end{solution}
 
-%\begin{problem}[Assignment 26]
-%\end{problem}
-%\begin{solution}
-%\end{solution}
+\begin{problem}[Assignment 26]
+\end{problem}
+\begin{solution}
+loop generation $1:$
+\begin{tabular}{ccc}
+ & $\cdot$ & \tabularnewline
+\cline{2-2} 
+\multicolumn{1}{c|}{$\cdot$} & \multicolumn{1}{c|}{} & $\cdot$\tabularnewline
+\cline{2-2} 
+ & $\cdot$ & \tabularnewline
+\end{tabular}
+$\qquad$ loop generation $2:$
+\begin{tabular}{cccc}
+ & $\cdot$ & $\cdot$ & \tabularnewline
+\cline{2-3} 
+\multicolumn{1}{c|}{$\cdot$} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & $\cdot$\tabularnewline
+\cline{2-3} 
+ & $\cdot$ & $\cdot$ & \tabularnewline
+\end{tabular}
+
+Langton's loop reproduces itself in every direction. It is operating in a $2D$ grid. The structure is growing with the same speed in two dimensions.
+First generation loop can grow into four room directions. Second generation loop can only grow into three room directions.
+$\Rightarrow$ the space requirement lies somewhere in the magnitude of $\Theta \left( n^2 \right)$.
+\end{solution}
 
 \begin{problem}[Assignment 27]
 \end{problem}
 \begin{solution}
-Let "$\vert$" be the concatenation of words. Then we have the following recursion for the L-system from the example:\\
+Define:
 \begin{align*}
-	w_0 & = C, w_1 = A\\
-	w_n & = w_{n-2} \vert w_{n-1} \\
-	\vert w_n \vert & = \vert w_{n-2} \vert + \vert w_{n-1} \vert
+	C(t) & = \mbox{number of symbols C at timestep t} \\
+	A(t) & = \mbox{number of symbols A at timestep t} \\
+	N(t) & = C(t)+A(t) \mbox{(length f the string)}
 \end{align*}
-which is the recursion formula of the Fibonacci numbers ($\vert w_0 \vert = \vert w_1 \vert = 1$).
 
-Proof of the recursion by induction:
-	\begin{description}
-		\item[Induction start: $n=2$;] $w_2 = w_0 \vert w_1 = C \vert A = CA$
-		\item[Induction step: $n \rightarrow n+1$;] Using the induction hypothesis we conclude: $w_{n+1} = w_{(n+1)-2} \vert w_{(n+1)-1} = w_{n-1} \vert w_n$
-	\end{description}
-\end{solution}
+First: Check starting conditions
+\begin{align*}
+	N(0) & \overset{\mbox{def.}}{=} C(0) + A(0) = 1+0 = 1 \\
+	N(1) & \overset{\mbox{def.}}{=} C(1) + A(1) \overset{(1)(2)}{=} A(0)+C(0)+A(0) \\
+		 & \overset{\mbox{Axiom}}{=} 0+1+0 = 1
+\end{align*}
+
+So for $t=2$ we get:
+\begin{align*}
+	N(t+1) & \overset{\mbox{def.}}{=} C(t+1) + A(t+1) \\
+		   & \overset{(1)(2)}{=} A(t) + C(t) + A(t) \\
+		   & \overset{\mbox{def.}}{=} N(t) + C(t-1) + A(t-1) \\
+		   & \overset{(2), \mbox{def.}}{=} N(t) + N(t-1) 
+\end{align*}
+
+Where in the above we used:
+
+\begin{tabular}{ll}
+$(1)$: & How are 'C's produced? Only with rule $2 \Rightarrow C(t+1)=A(t)$ \\ 
+$(2)$: & How are 'A's produced? With rule 1 and rule 2: $A(t+1)=C(t)+A(t)$ \\ 
+\end{tabular} 
+ \end{solution}
 
 \begin{problem}[Assignment 28]
 \end{problem}
@@ -109,9 +187,9 @@ Proof of the recursion by induction:
 \begin{solution}
 	\begin{enumerate}[a)]
 		\item 
-			The $B \rightarrow B C$ rule adds one unit length per turn, thus controls the length of the segments. The $A \rightarrow A +B C +B C$ concatenates the turns of the spiral
+			The $B \rightarrow B C$ rule adds one unit length per turn, thus controls the length of the segments. The $A \rightarrow A +B C +B C$ concatenates the turns of the spiral.
 			%\begin{table}[h!]
-				\begin{tabular}{ll}
+				\begin{tabular}[t]{ll}
 					 variables: & A, B, C\\ 
 					 constants: & +,- \\
 					 axiom: & -A \\
@@ -123,7 +201,7 @@ Proof of the recursion by induction:
 
 		\item 
 			%\begin{table}[h!]
-				\begin{tabular}{ll}
+				\begin{tabular}[t]{ll}
 					 variables: & B, C, D, E, F\\ 
 					 constants: & +,- \\
 					 axiom: & B \\
@@ -132,7 +210,22 @@ Proof of the recursion by induction:
 					 rule 2: & $C \rightarrow F[-D]F$ \\
 					 rule 3: & $F \rightarrow FF$
 				\end{tabular}
+		\item
+				\begin{tabular}[t]{ll}
+					 variables: & 0, 1, X\\ 
+					 constants: & \\
+					 axiom: & X \\
+									& \\
+					 rule 1: & $X \rightarrow 0000$ \\
+					 rule 2: & $0000 \rightarrow 0001$ \\
+					 rule 3: & $0001 \rightarrow 0011$ \\
+					 rule 4: & $0011 \rightarrow 0010$ \\
+					  \vdots & \vdots \\
+					 rule 16: & $1001 \rightarrow 1000$ \\
+					 rule 17: & $1000 \rightarrow 0000$
+				\end{tabular}
 			%\end{table}
+			more than one symbol $\Rightarrow$ context dependent
 	\end{enumerate}
 	\begin{figure}[h]
 		\centering
