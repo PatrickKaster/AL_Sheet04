@@ -1,7 +1,7 @@
-Exercise 4
+Exercise 5
 ==========
 
-This is going to be the solution for exercise 4 of the
+This is going to be the solution for exercise 5 of the
 [Artificial Life Lecture][artificial_life] at the University of Bonn.
 
 style file: [HMC Mathematics Homework Class]
